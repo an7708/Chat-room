@@ -2,7 +2,13 @@ import { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
 import './index.css';
 
-const socket = io(import.meta.env.VITE_SERVER_URL || 'http://localhost:3001', {
+// const socket = io(import.meta.env.VITE_SERVER_URL || 'http://localhost:3001', {
+//   transports: ['polling', 'websocket'],
+//   withCredentials: false,
+// });
+
+
+const socket = io('https://chat-room-ddoa.onrender.com', {
   transports: ['polling', 'websocket'],
   withCredentials: false,
 });
