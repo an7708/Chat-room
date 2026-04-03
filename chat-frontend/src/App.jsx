@@ -2,8 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
 import './index.css';
 
-// ─── Socket created ONCE outside component ────────────────────────
-const socket = io('http://localhost:3001');
+const socket = io(import.meta.env.VITE_SERVER_URL || 'http://localhost:3001');
 
 // ─── Helper: initials from name ───────────────────────────────────
 const getInitials = (name) =>

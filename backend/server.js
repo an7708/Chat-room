@@ -4,7 +4,11 @@
     const cors    = require('cors');
 
     const app = express();
-    app.use(cors());
+    
+    app.use(cors({
+    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    methods: ['GET', 'POST'],
+    }));
 
     const httpServer = http.createServer(app);
 
@@ -14,6 +18,10 @@
         methods: ['GET', 'POST'],
     },
     });
+
+        app.get('/', (req, res) => {
+            res.send('Chat server is running');
+        });
 
     io.on('connection', (socket) => {
     console.log('Connected:', socket.id);
