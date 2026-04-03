@@ -12,12 +12,14 @@
 
     const httpServer = http.createServer(app);
 
-    const io = new Server(httpServer, {
-    cors: {
-        origin: 'http://localhost:5173',
-        methods: ['GET', 'POST'],
-    },
-    });
+            const io = new Server(httpServer, {
+        cors: {
+            origin: process.env.CLIENT_URL || 'http://localhost:5173',
+            methods: ['GET', 'POST'],
+            credentials: false,
+        },
+        transports: ['polling', 'websocket'],
+        });
 
         app.get('/', (req, res) => {
             res.send('Chat server is running');
